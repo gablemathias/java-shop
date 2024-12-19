@@ -42,10 +42,10 @@ class WarehouseTest {
     }
 
     @Nested
-    @DisplayName("When Checking Stock of")
+    @DisplayName("When Checking Stock")
     class WhenCheckingStock {
         @Test
-        @DisplayName("Existent Product")
+        @DisplayName("of Existent Product")
         void shouldCheckStockOfExistingProduct() {
             warehouse = new Warehouse();
             warehouse.addProduct("milk", 3, 10);
@@ -55,13 +55,23 @@ class WarehouseTest {
         }
 
         @Test
-        @DisplayName("Non Existent Product")
+        @DisplayName("of Non Existent Product")
         void shouldCheckStockZeroWhenNoProduct() {
             warehouse = new Warehouse();
             int stock = warehouse.stock("milk");
 
             Assertions.assertEquals(0, stock);
         }
+    }
+
+    @Test
+    @DisplayName("Change Stock Quantity When Product is Taken")
+    void shouldChangeStockValue() {
+        warehouse = new Warehouse();
+        warehouse.addProduct("milk", 3, 10);
+
+        Assertions.assertTrue(warehouse.take("milk"));
+        Assertions.assertEquals(9, warehouse.stock("milk"));
     }
 
 }
