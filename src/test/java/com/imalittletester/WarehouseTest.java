@@ -15,7 +15,7 @@ class WarehouseTest {
         warehouse.addProduct("milk", 3, 10);
         warehouse.addProduct("coffee", 5, 7);
 
-        Assertions.assertEquals(2, warehouse.getProducts().size());
+        Assertions.assertEquals(2, warehouse.products().size());
     }
 
     @Nested

@@ -2,6 +2,7 @@ package com.imalittletester;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Warehouse {
     private final Map<String, int[]> products = new HashMap<>();
@@ -43,10 +44,21 @@ public class Warehouse {
         return false;
     }
 
-    public Map<String, int[]> getProducts() {
-        return products;
+    public Set<String> products() {
+        return products.keySet();
     }
-
+    
     public static void main(String[] args) {
+        Warehouse warehouse = new Warehouse();
+        warehouse.addProduct("milk", 3, 10);
+        warehouse.addProduct("coffee", 5, 6);
+        warehouse.addProduct("buttermilk", 2, 20);
+        warehouse.addProduct("yogurt", 2, 20);
+
+        System.out.println("products:");
+
+        for (String product: warehouse.products()) {
+            System.out.println(product);
+        }
     }
 }
