@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Warehouse {
-    private Map<String, int[]> products = new HashMap<>();
+    private final Map<String, int[]> products = new HashMap<>();
 
     public void addProduct(String product, int price, int stock) {
-        products.put(product, new int[] {price, stock});
+        if (stock > 0) {
+            products.put(product, new int[] {price, stock});
+        }
     }
 
     public int price(String product) {
@@ -16,6 +18,29 @@ public class Warehouse {
         }
 
         return -99;
+    }
+
+    public int stock(String product) {
+        if(products.containsKey(product)) {
+            return products.get(product)[1];
+        }
+
+        return 0;
+    }
+
+    public boolean take(String product) {
+        int quantity = stock(product);
+
+        if(quantity > 0) {
+            products.replace(product, new int[] {price(product), quantity - 1});
+            if (products.get(product)[1] == 0) {
+                products.remove(product);
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     public Map<String, int[]> getProducts() {
