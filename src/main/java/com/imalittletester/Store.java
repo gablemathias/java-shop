@@ -3,8 +3,8 @@ package com.imalittletester;
 import java.util.Scanner;
 
 public class Store {
-    private Warehouse warehouse;
-    private Scanner scan;
+    private final Warehouse warehouse;
+    private final Scanner scan;
 
     public Store(Warehouse warehouse, Scanner scan) {
         this.warehouse = warehouse;

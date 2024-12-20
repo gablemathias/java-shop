@@ -1,15 +1,11 @@
 # A Java Store
 
----
-
 **Hello**, My goal with this project was to design a simple store where I could
 apply important concepts necessary to any other project. 
 Studying Inheritance, Interfaces, Unit and Integrated Tests, Abstraction, Polymorphism and Encapsulation is
 better and many others is, as everything, better by doing.
 
 ## Actual state
-
----
 
 I have added all the main functionalities, so it is possible to add items to your
 warehouse and cart.
