@@ -23,7 +23,7 @@ class WarehouseTest {
         }
 
         @Test
-        @DisplayName("Can't Add Products with Negative Price")
+        @DisplayName("Shouldn't Add Products with Negative Price")
         void shouldNotAddProductsWithNegativePrice() {
             warehouse.addProduct("banana", -3, 7);
             int productPrice = warehouse.price("banana");
@@ -31,6 +31,17 @@ class WarehouseTest {
             Assertions.assertNotEquals(-3, productPrice);
             Assertions.assertFalse(warehouse.products().contains("banana"));
             Assertions.assertEquals(-99, productPrice);
+        }
+
+        @Test
+        @DisplayName("Shouldn't Add Products with Negative Stock")
+        void shouldNotAddProductsWithNegativeStock() {
+            warehouse.addProduct("banana", 3, -7);
+            int productStock = warehouse.stock("banana");
+
+            Assertions.assertNotEquals(-7, productStock);
+            Assertions.assertFalse(warehouse.products().contains("banana"));
+            Assertions.assertEquals(0, productStock);
         }
     }
 
