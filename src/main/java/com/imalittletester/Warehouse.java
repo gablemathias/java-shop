@@ -34,9 +34,9 @@ public class Warehouse {
 
         if(quantity > 0) {
             products.replace(product, new int[] {price(product), quantity - 1});
-            if (products.get(product)[1] == 0) {
-                products.remove(product);
-            }
+//            if (products.get(product)[1] == 0) {
+//                products.remove(product);
+//            }
 
             return true;
         }
@@ -47,7 +47,7 @@ public class Warehouse {
     public Set<String> products() {
         return products.keySet();
     }
-    
+
     public static void main(String[] args) {
         Warehouse warehouse = new Warehouse();
         warehouse.addProduct("milk", 3, 10);
