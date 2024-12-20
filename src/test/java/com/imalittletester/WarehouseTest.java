@@ -8,15 +8,32 @@ import org.junit.jupiter.api.Nested;
 class WarehouseTest {
     Warehouse warehouse;
 
-    @Test
-    @DisplayName("Add Products")
-    void shouldAddProducts() {
-        warehouse = new Warehouse();
-        warehouse.addProduct("milk", 3, 10);
-        warehouse.addProduct("coffee", 5, 7);
+    @Nested
+    @DisplayName("When Adding Products")
+    class WhenAddingProducts {
+        Warehouse warehouse = new Warehouse();
 
-        Assertions.assertEquals(2, warehouse.products().size());
+        @Test
+        @DisplayName("Add Products")
+        void shouldAddProducts() {
+            warehouse.addProduct("milk", 3, 10);
+            warehouse.addProduct("coffee", 5, 7);
+
+            Assertions.assertEquals(2, warehouse.products().size());
+        }
+
+        @Test
+        @DisplayName("Can't Add Products with Negative Price")
+        void shouldNotAddProductsWithNegativePrice() {
+            warehouse.addProduct("banana", -3, 7);
+            int productPrice = warehouse.price("banana");
+
+            Assertions.assertNotEquals(-3, productPrice);
+            Assertions.assertFalse(warehouse.products().contains("banana"));
+            Assertions.assertEquals(-99, productPrice);
+        }
     }
+
 
     @Nested
     @DisplayName("When Checking Price of")

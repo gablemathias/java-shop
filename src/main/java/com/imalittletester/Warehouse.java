@@ -8,7 +8,7 @@ public class Warehouse {
     private final Map<String, int[]> products = new HashMap<>();
 
     public void addProduct(String product, int price, int stock) {
-        if (stock > 0) {
+        if (stock > 0 && price >= 0) {
             products.put(product, new int[] {price, stock});
         }
     }
